@@ -6,4 +6,4 @@ Inspired by [SeqKit](https://github.com/shenwei356/seqkit)
 
 
 ## Test files
-The fasta test files are from [Rosalind](rosalind.info). <br>
+The fasta test files are from [Rosalind](https://rosalind.info/problems/list-view/). <br>
