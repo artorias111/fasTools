@@ -29,4 +29,4 @@ if __name__=="__main__":
 
     # Dev Tests
     f=fasta('../tests/fasta_test_files/grph.fa')
-    print(f.fasta_length())
+    print(f.read_fasta_file())
