@@ -1,0 +1,17 @@
+#!/usr/bin/env python3
+
+import fasta_funcs
+import fastq_funcs
+
+
+# argparse stuff
+
+
+def fastq2fasta(file_path):
+    f=fastq_funcs.fastq(file_path)
+    d=f.get_seqs()
+    for i in d:
+        print(">"+i+"\n"+d[i])
+
+
+fastq2fasta("../tests/fastq_test_files/1_control_psbA3_2019_minq7.fastq")
