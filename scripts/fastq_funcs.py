@@ -4,12 +4,13 @@ class fastq:
     def __init__(self, filepath):
         self.filepath = filepath
 
+
     def read_fastq_file(self):
         with open (self.filepath,'r') as f :
             # Sequence dictionary stored as header:sequence
-            fq_seq={} 
+            fq_seq={}
             # Sequence dictionary stored as header:phred scores
-            fq_phred={} 
+            fq_phred={}
             for line in f:
                 l=line.strip()
                 if l=="":
@@ -36,11 +37,15 @@ class fastq:
         fq_seq,_=fastq.read_fastq_file(self)
         return(fq_seq)
 
+    def get_phred_scores(self):
+        _,fq_phred=fastq.read_fastq_file(self)
+        return fq_phred
+
 
 if __name__=="__main__":
-    print("Script for handling fasta file functions")
+    print("Script for handling fastq file functions")
 
-    # Dev Tests
+    # Dev Tests : Load more test files to figure out edge cases
     f=fastq('../tests/fastq_test_files/1_control_psbA3_2019_minq7.fastq')
     # print(f.read_fastq_file())
     print(f.get_seqs())
