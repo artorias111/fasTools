@@ -115,6 +115,7 @@ class fasta:
 
 if __name__=="__main__":
     print("Script for handling fasta file functions")
+    print("Don't run this fle directly, instead to be used as a helper function for other scripts")
 
     # Dev Tests
     f=fasta('../tests/fasta_test_files/grph.fa')
