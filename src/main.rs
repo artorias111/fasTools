@@ -121,6 +121,10 @@ fn read_fastq(file: &str) -> Vec<FastqRecord> {
     for line in reader.lines() {
         let line = line.unwrap();
         let line = line.trim();
+        if line.is_empty() {
+            continue;
+        }
+
         match line_number % 4 {
             0 => { current_header = line.to_string() },
             1 => { current_seq = line.to_string() },
