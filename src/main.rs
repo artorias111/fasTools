@@ -24,7 +24,7 @@ enum FastxParse {
 
 fn main() {
     let file = std::env::args().nth(1).expect("Please provide a filepath");
-
+    
     let records: Vec<FastxParse> = match read_fastx_type(&file) {
         Ok(FastxFormat::Fasta) => { 
             read_fasta(&file)
@@ -109,6 +109,40 @@ fn read_fasta(file: &str) -> Vec<FastaRecord> {
 }
 
 
-fn read_fastq(file: &str) -> Vec<FastqRecord> { todo!() }
+fn read_fastq(file: &str) -> Vec<FastqRecord> { 
+    let mut records = Vec::new();
+    let mut current_header = String::new();
+    let mut current_seq = String::new();
 
-// fn parse_gzip() { todo!() } // use flate2 
+    let reader = BufReader::new(File::open(file).expect("Invalid file, try again"));
+
+    let mut line_number: usize = 0;
+
+    for line in reader.lines() {
+        let line = line.unwrap();
+        let line = line.trim();
+        if line.is_empty() {
+            continue;
+        }
+
+        match line_number % 4 {
+            0 => { current_header = line.to_string() },
+            1 => { current_seq = line.to_string() },
+            2 => { },
+            3 => { records.push(FastqRecord {
+                header: current_header.clone(), 
+                seq: current_seq.clone(),
+                q_score: line.to_string(),
+                });
+            },
+            _ => { },
+        };
+
+        line_number += 1;
+    }
+    records
+}
+
+
+
+fn parse_gzip() { todo!() } // use flate2 
