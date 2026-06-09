@@ -31,11 +31,11 @@ The fasta test files are from [Rosalind](https://rosalind.info/problems/list-vie
 ## Sequence transformation
 - [x] complement (`-p`)
 - [x] reverse complement (`-r -p`)
-- [ ] reverse only (`-r`)
-- [ ] upper case (`-u`)
-- [ ] lower case (`-l`)
-- [ ] DNA to RNA (`--dna2rna`)
-- [ ] RNA to DNA (`--rna2dna`)
+- [x] reverse only (`-r`)
+- [x] upper case (`-u`)
+- [x] lower case (`-l`)
+- [x] DNA to RNA (`--dna2rna`)
+- [x] RNA to DNA (`--rna2dna`)
 - [ ] remove gaps (`-g`, gap letters via `-G`)
 
 ## Filtering
