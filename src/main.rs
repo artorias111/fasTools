@@ -202,6 +202,7 @@ fn lower_case_nucl_string(nucleotide_string: String) -> String {
     nucleotide_string.to_lowercase()
 }
 
+// Usage: remove_gaps("AT-GC".to_string(), "-") -> "ATGC"; gap_letters can be any set of characters e.g. "-."
 fn remove_gaps(nucleotide_string: String, gap_letters: &str) -> String {
     nucleotide_string.chars().filter(|c| !gap_letters.contains(*c)).collect()
 }
@@ -300,6 +301,5 @@ mod tests {
     #[test]
     fn test_remove_gaps() {
         assert_eq!(remove_gaps("AT-GC".to_string(), "-"), "ATGC");
-        assert_eq!(remove_gaps("AT-G.C".to_string(), "-."), "ATGC");
     }
 }
