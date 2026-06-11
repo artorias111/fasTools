@@ -202,6 +202,11 @@ fn lower_case_nucl_string(nucleotide_string: String) -> String {
     nucleotide_string.to_lowercase()
 }
 
+// Usage: remove_gaps("AT-GC".to_string(), "-") -> "ATGC"; gap_letters can be any set of characters e.g. "-."
+fn remove_gaps(nucleotide_string: String, gap_letters: &str) -> String {
+    nucleotide_string.chars().filter(|c| !gap_letters.contains(*c)).collect()
+}
+
 fn dna2rna(nucleotide_string: String) -> Result<String, io::Error> { // I should validate for a dna string before doing this
     // clean up
     let cleaned_up_nucl = upper_case_nucl_string(nucleotide_string);
@@ -291,5 +296,10 @@ mod tests {
     #[test]
     fn test_rna2dna() {
         assert_eq!(rna2dna("AUGC".to_string()).unwrap(), "ATGC");
+    }
+
+    #[test]
+    fn test_remove_gaps() {
+        assert_eq!(remove_gaps("AT-GC".to_string(), "-"), "ATGC");
     }
 }

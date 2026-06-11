@@ -36,7 +36,7 @@ The fasta test files are from [Rosalind](https://rosalind.info/problems/list-vie
 - [x] lower case (`-l`)
 - [x] DNA to RNA (`--dna2rna`)
 - [x] RNA to DNA (`--rna2dna`)
-- [ ] remove gaps (`-g`, gap letters via `-G`)
+- [x] remove gaps (`-g`, gap letters via `-G`)
 
 ## Filtering
 - [ ] min length (`-m`)
