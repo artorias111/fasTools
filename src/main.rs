@@ -160,7 +160,7 @@ fn read_fastq(file: &str) -> Vec<FastqRecord> {
 /// assert_eq!(complement_nucl_string("ATGC".to_string()), "TACG");
 /// ```
 
-fn complement_nucl_string(nucleotide_string: String) -> String {
+fn complement_nucl_string(nucleotide_string: &str) -> String {
     let mut complemented_nucl = String::new();
     for nucleotide in nucleotide_string.chars() {
         match nucleotide {
@@ -316,7 +316,7 @@ mod tests {
     use super::*;
     #[test]
     fn test_complement() {
-        assert_eq!(complement_nucl_string("ATGC".to_string()), "TACG");
+        assert_eq!(complement_nucl_string("ATGC"), "TACG");
     }
 
     #[test]
