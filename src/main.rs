@@ -265,6 +265,52 @@ where
 
 */
 
+
+// ------- SECTION 2: Filtering 
+
+
+fn min_length(nucl: String, cutoff: usize) -> bool {
+    // true if len(nucl) < cutoff, else false
+
+    if nucl.chars().count() < cutoff {
+        return true
+    }
+    false
+}
+
+fn max_length(nucl: String, cutoff: usize) -> bool {
+    if nucl.chars().count() > cutoff {
+        return true
+    }
+    false
+}
+
+
+fn pattern_match_id(fastx_id: String, pattern: &str) -> bool {
+    // return true if pattern is matched in id, else false
+    // maybe implement a fuzzy version of this?
+
+    fastx_id.contains(pattern) 
+}
+
+fn pattern_match_sequence(nucl: String, pattern: &str) -> bool {
+   if nucl.contains(pattern){
+    return true
+   } else if reverse_complement_nucl_string(nucl).contains(pattern) {
+    return true
+   } else {
+    return false
+   }
+}
+
+// fn pattern_from_file()
+// mash up pattern_match_sequence and a file read function
+
+
+
+// wrap filter functions into a single closure-based function
+
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -301,5 +347,23 @@ mod tests {
     #[test]
     fn test_remove_gaps() {
         assert_eq!(remove_gaps("AT-GC".to_string(), "-"), "ATGC");
+    }
+
+    // Section 2, filtering tests
+
+    #[test]
+    fn test_min_length() {
+        assert_eq!(min_length("TTAGGC".to_string(), 3), false);
+    }
+
+    #[test]
+    fn test_pattern_match_id() {
+        assert_eq!(pattern_match_id("header1".to_string(), "ead1"), false);
+        println!("hello from test function");
+    }
+
+    #[test]
+    fn test_pattern_match_sequence() {
+        assert_eq!(pattern_match_sequence("TTAGGG".to_string(), "CCT"), true);
     }
 }
